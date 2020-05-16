@@ -1,18 +1,27 @@
 <template>
     <div class="gallery grid" >
+        <CoolLightBox
+            :items="this.allImgSrc"
+            :index="imageIndex"
+            :effect="'fade'"
+            @close="imageIndex = null"
+        >
+        </CoolLightBox>
         <div class="gallery__column grid" v-for="(column, index) in allColumns" :key="index">
-            <div class="gallery__image-wrap" v-for="(image, index2) in column" :key="index2">
+            <div class="gallery__image-wrap fade-in--bottom" v-for="(image, index2) in column" :key="index2" @click="imageIndex = image.index">
                 <g-image class="gallery__image" :src="image.image.src" :alt="image.image.alt" width="500" height="250" fit="contain"></g-image>
             </div>
         </div>
     </div>
 </template>
 <script>
-import GalleryItem from "~/components/GalleryItem.vue"
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+
 export default {
     name: "Gallery",
     components: {
-        GalleryItem,
+        CoolLightBox,
     },
     props: {
         galleryItemList: Array,
@@ -25,11 +34,17 @@ export default {
             col2: [],
             col3: [],
             numberOfColumns: 0,
+            imageIndex: null,
+            allImgSrc: []
         }
     },
     mounted() {
         window.addEventListener('resize', this.onResize)
         this.onResize()
+        this.setAllImgSrc()
+    },
+    unmounted() {
+
     },
     watch: {
         numberOfColumns: function (num) {
@@ -39,14 +54,14 @@ export default {
                 switch(num) {
                     case 1:
                         for(let image in this.galleryItemList) {
-                            this.setColumnItem(this.col1, this.galleryItemList[image])
+                            this.setColumnItem(this.col1, this.galleryItemList[image], image)
                         }
                         this.allColumns.push(this.col1)
                         break;
                     case 2:
                         for(let image in this.galleryItemList) {
                             i == 3 ? i = 1 : i = i
-                            this.setColumnItem(this.choseCol(i), this.galleryItemList[image])
+                            this.setColumnItem(this.choseCol(i), this.galleryItemList[image], image)
                             i++
                         }
                         this.allColumns.push(this.col1, this.col2)
@@ -54,16 +69,12 @@ export default {
                     case 3:
                         for(let image in this.galleryItemList) {
                             i == 4 ? i = 1 : i = i
-                            this.setColumnItem(this.choseCol(i), this.galleryItemList[image])
+                            this.setColumnItem(this.choseCol(i), this.galleryItemList[image], image)
                             i++
                         }
                         this.allColumns.push(this.col1, this.col2, this.col3)
                         break;
                 }
-                console.log(this.allColumns)
-                console.log(this.col1)
-                console.log(this.col2)
-                console.log(this.col3)
             }
         }
     },
@@ -101,9 +112,15 @@ export default {
             this.col2 = []
             this.col3 = []
         },
-        setColumnItem(column, item) {
+        setColumnItem(column, item, index) {
+            item.index = parseInt(index)
             column.push(item)
         },
+        setAllImgSrc() {
+            for(let image in this.galleryItemList) {
+                this.allImgSrc.push(this.galleryItemList[image].image.src.src)
+            }
+        }
     }
 }
 </script>
@@ -130,5 +147,9 @@ export default {
             width: 100%;
         }
     }
+}
+
+.fade-in--bottom {
+
 }
 </style>
