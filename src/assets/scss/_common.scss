@@ -1,0 +1,9 @@
+.content-wrap {
+    max-width: $site-width;
+    margin: 0 auto;
+    padding: $gutter;
+}
+
+.grid {
+    display: grid;
+}

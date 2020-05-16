@@ -1,21 +1,27 @@
 <template>
-  <div class="poop">
-  	<h1 v-html="$page.wordPressPost.title" />
-
-        <div class="blah" v-for="image in $page.wordPressPost.acf.imageGallery" :key="image.title">
-            <g-image :src="image.image.src" :alt="image.image.alt" width="500" height="250" fit="contain"></g-image>
-        </div>
-
-  </div>
+  <Layout>
+    <div class="content-wrap">
+      <section class="gallery-post__header">
+        <h1 class="gallery-post__heading site-headline" v-html="$page.wordPressPost.title" />
+      </section>
+      <section class="gallery-post__gallery">
+          <Gallery
+            :galleryItemList="$page.wordPressPost.acf.imageGallery"
+          />
+      </section>
+    </div>
+  </Layout>
 </template>
-<style lang="scss">
-.blah {
-    width: 500px;
-
-    img {
-        width: 100%;
-    }
+<script>
+import Gallery from "~/components/Gallery.vue"
+export default {
+  components: {
+    Gallery
+  }
 }
+</script>
+<style lang="scss">
+
 </style>
 
 <page-query>

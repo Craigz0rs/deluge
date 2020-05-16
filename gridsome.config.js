@@ -5,7 +5,7 @@ function addStyleResource (rule) {
     .loader('style-resources-loader')
     .options({
       patterns: [
-        path.resolve(__dirname, './src/assets/sass/global.scss'),
+        path.resolve(__dirname, './src/assets/scss/global.scss'),
       ],
     })
 }

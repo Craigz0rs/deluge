@@ -10,7 +10,6 @@
         </li>
       </ul>
     </section>
-
   </Layout>
 </template>
 <page-query>
