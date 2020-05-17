@@ -8,7 +8,7 @@
         >
         </CoolLightBox>
         <div class="gallery__column grid" v-for="(column, index) in allColumns" :key="index">
-            <div class="gallery__image-wrap fade-in--bottom" v-for="(image, index2) in column" :key="index2" @click="imageIndex = image.index">
+            <div class="gallery__image-wrap" v-for="(image, index2) in column" :key="index2" @click="imageIndex = image.index" v-animate="'fade-in'">
                 <g-image class="gallery__image" :src="image.image.src" :alt="image.image.alt" width="500" height="250" fit="contain"></g-image>
             </div>
         </div>
@@ -35,16 +35,13 @@ export default {
             col3: [],
             numberOfColumns: 0,
             imageIndex: null,
-            allImgSrc: []
+            allImgSrc: [],
         }
     },
     mounted() {
         window.addEventListener('resize', this.onResize)
         this.onResize()
         this.setAllImgSrc()
-    },
-    unmounted() {
-
     },
     watch: {
         numberOfColumns: function (num) {
@@ -120,7 +117,7 @@ export default {
             for(let image in this.galleryItemList) {
                 this.allImgSrc.push(this.galleryItemList[image].image.src.src)
             }
-        }
+        },
     }
 }
 </script>
@@ -143,13 +140,31 @@ export default {
     }
 
     &__image-wrap {
+        opacity: 0;
+        transform: translateY(10px);
         img {
             width: 100%;
         }
     }
 }
 
-.fade-in--bottom {
+.animate {
+  transition-delay: .2s;
+  transition-duration: .4s;
+  transition-timing-function: ease-in-out;
+}
 
+.fade-in {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.9);
+
+    &.animate-active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cool-lightbox {
+    height: 100%;
 }
 </style>
