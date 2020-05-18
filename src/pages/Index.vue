@@ -1,15 +1,17 @@
 <template>
   <Layout>
-    <section class="home__about">
+    <div class="content-wrap">
+      <section class="home__about">
 
-    </section> 
-    <section class="home__gallery">
-      <ul class="home-gallery__list">
-        <li v-for="item in galleryItems" :key="item.node.path" class="home-gallery__item">
-          <g-link :to="item.node.path">{{item.node.title}}</g-link>
-        </li>
-      </ul>
-    </section>
+      </section> 
+      <section class="home__gallery">
+        <ul class="home-gallery__list">
+          <li v-for="item in galleryItems" :key="item.node.path" class="home-gallery__item">
+            <g-link :to="item.node.path">{{item.node.title}}</g-link>
+          </li>
+        </ul>
+      </section>
+    </div>
   </Layout>
 </template>
 <page-query>

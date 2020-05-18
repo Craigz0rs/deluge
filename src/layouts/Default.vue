@@ -2,19 +2,21 @@
   <div class="layout">
     <header class="header">
       <div class="content-wrap header__wrapper">
-        <strong>
-          <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-        </strong>
-        <nav class="nav">
-          <g-link class="nav__link" to="/">Home</g-link>
-          <g-link class="nav__link" to="/about/">About</g-link>
-        </nav>
+        <Nav />
       </div>
     </header>
     <slot/>
   </div>
 </template>
-
+<script>
+import Nav from '~/components/Nav.vue'
+export default {
+    name: "Default",
+    components: {
+      Nav,
+    }
+}
+</script>
 <static-query>
 query {
   metadata {
@@ -38,10 +40,7 @@ body {
     align-items: center;
     margin-bottom: 20px;
     height: 80px;
+    overflow: visible;
   }
-}
-
-.nav__link {
-  margin-left: 20px;
 }
 </style>
