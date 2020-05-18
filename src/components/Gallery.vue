@@ -44,7 +44,27 @@ export default {
         this.setAllImgSrc()
     },
     watch: {
+        // galleryItemList: function (arr) {
+        //     this.setColumns(this.numberOfColumns)
+        //     this.setAllImgSrc()
+        // },
         numberOfColumns: function (num) {
+            this.setColumns(num)
+        }
+    },
+    computed: {
+        setNumberOfColumns() {
+            if (this.width > 1024) {
+                this.numberOfColumns = 3
+            } else if (this.width > 760) {
+                this.numberOfColumns = 2
+            } else {
+                this.numberOfColumns = 1
+            }
+        }
+    },
+    methods: {
+        setColumns(num) {
             if (this.galleryItemList) {
                 let i = 1
                 this.colReset()
@@ -73,20 +93,8 @@ export default {
                         break;
                 }
             }
-        }
-    },
-    computed: {
-        setNumberOfColumns() {
-            if (this.width > 1024) {
-                this.numberOfColumns = 3
-            } else if (this.width > 760) {
-                this.numberOfColumns = 2
-            } else {
-                this.numberOfColumns = 1
-            }
-        }
-    },
-    methods: {
+            console.log("success")
+        },
         onResize: function () {
             this.width = window.innerWidth 
             this.setNumberOfColumns
@@ -114,6 +122,7 @@ export default {
             column.push(item)
         },
         setAllImgSrc() {
+            this.allImgSrc = []
             for(let image in this.galleryItemList) {
                 this.allImgSrc.push(this.galleryItemList[image].image.src.src)
             }

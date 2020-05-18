@@ -7,6 +7,8 @@
       <section class="gallery-post__gallery">
           <Gallery
             :galleryItemList="$page.wordPressPost.acf.imageGallery"
+            :title="$page.wordPressPost.title"
+            :key="$page.wordPressPost.id"
           />
       </section>
     </div>
@@ -17,7 +19,7 @@ import Gallery from "~/components/Gallery.vue"
 export default {
   components: {
     Gallery
-  }
+  },
 }
 </script>
 <style lang="scss">
@@ -28,6 +30,7 @@ export default {
 query ($id: ID!) {
   wordPressPost (id: $id) {
     title
+    id
     acf {
         description
         imageGallery {
