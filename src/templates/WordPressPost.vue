@@ -23,7 +23,18 @@ export default {
 }
 </script>
 <style lang="scss">
+.gallery-post {
+  &__heading {
+    margin: 1rem 0;
+    font-weight: 700;
+    font-size: 4rem;
+    color: rgb(131, 131, 131);
 
+    @media screen and (max-width: 400px) {
+      font-size: 3.5rem;
+    }
+  }
+}
 </style>
 
 <page-query>

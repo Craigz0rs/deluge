@@ -6,14 +6,17 @@
       </div>
     </header>
     <slot/>
+    <Footer />
   </div>
 </template>
 <script>
 import Nav from '~/components/Nav.vue'
+import Footer from '~/components/Footer.vue'
 export default {
     name: "Default",
     components: {
       Nav,
+      Footer,
     }
 }
 </script>
@@ -41,6 +44,12 @@ body {
     margin-bottom: 20px;
     height: 80px;
     overflow: visible;
+
+    &.content-wrap {
+      @include screen--small {
+        padding: 0 $gutter;
+      }
+    }
   }
 }
 </style>

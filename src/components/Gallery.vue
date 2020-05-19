@@ -1,5 +1,5 @@
 <template>
-    <div class="gallery grid">
+    <div class="gallery grid" title="">
         <CoolLightBox
             :items="this.allImgSrc"
             :index="imageIndex"
@@ -151,6 +151,8 @@ export default {
     &__image-wrap {
         opacity: 0;
         transform: translateY(10px);
+        cursor: zoom-in;
+
         img {
             width: 100%;
         }
