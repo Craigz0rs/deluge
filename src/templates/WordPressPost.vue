@@ -17,6 +17,11 @@
 <script>
 import Gallery from "~/components/Gallery.vue"
 export default {
+  metaInfo() {
+    return {
+      title: this.$page.wordPressPost.title
+    }
+  },
   components: {
     Gallery
   },

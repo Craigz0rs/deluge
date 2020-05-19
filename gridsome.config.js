@@ -18,7 +18,8 @@ module.exports = {
       addStyleResource(config.module.rule('scss').oneOf(type))
     })
   },
-  siteName: 'Gridsome',
+  siteName: 'The Deluge',
+  siteDescription: 'A collection of photography from across North America',
   plugins: [
     {
       use: 'gridsome-source-wordpress',

@@ -41,7 +41,12 @@ query {
 import HomeGallery from '~/components/HomeGallery.vue'
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'Portfolio',
+    meta: [
+      {
+        name: 'description', content: 'A collection of photography from across North America'
+      }
+    ]
   },
   components: {
     HomeGallery,
