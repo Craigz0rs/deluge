@@ -22,6 +22,18 @@ export default {
             justify-content: space-between;
             color: rgb(131,131,131);
 
+            @include screen--small {
+                flex-wrap: wrap;
+                div {
+                    width: 100%;
+                    text-align: center;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+
             a {
                 color: black;
                 text-decoration: none;
