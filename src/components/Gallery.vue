@@ -1,5 +1,5 @@
 <template>
-    <div class="gallery grid" >
+    <div class="gallery grid">
         <CoolLightBox
             :items="this.allImgSrc"
             :index="imageIndex"

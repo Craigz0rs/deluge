@@ -32,14 +32,19 @@ query ($id: ID!) {
     title
     id
     acf {
-        description
-        imageGallery {
-            image {
-                src
-                alt
-                title
-            }
-        }
+      featuredImage {
+        src
+        title
+        alt
+      }
+      description
+      imageGallery {
+          image {
+              src
+              alt
+              title
+          }
+      }
     }
   }
 }

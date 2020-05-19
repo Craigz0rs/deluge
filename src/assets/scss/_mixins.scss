@@ -9,3 +9,24 @@
         @content;
     }
 }
+
+@mixin screen--large {
+    @media all and (max-width: 1450px) {
+        @content;
+    }
+}
+
+@mixin home-gallery-title(
+    $font-size, 
+    $transform, 
+    $transform-origin, 
+    $x-select, 
+    $x-pos, 
+    $y-select, 
+    $y-pos) {
+        transform-origin: $transform-origin;
+        transform: $transform;
+        #{$x-select}: $x-pos;
+        #{$y-select}: $y-pos;
+        font-size: $font-size;
+}

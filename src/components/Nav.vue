@@ -4,16 +4,18 @@
             <g-link to="/" class="nav__link">Home</g-link>
         </div>
         <ul class="nav__wrap">
-
-            <li class="nav__item">
-                <g-link class="nav__link" to="/about">About</g-link> 
-            </li>
-            <li class="nav__item">
-                <g-link class="nav__link" to="/gallery/cities">Contact</g-link> 
-            </li>
-                                <li 
+            <li class="nav__item nav__dropdown-container">
+                <button 
+                    id="nav-expand"
+                    class="button--nav nav__subnavbttn nav__link nav__link--parent"
+                    :aria-expanded="this.isOpen"
+                >
+                    Portfolio
+                </button>
+                <ul class="nav__dropdown">
+                    <li 
                         class="nav__item--dropdown nav__item" 
-                        v-for="(item, index) in $static.posts.edges" 
+                        v-for="(item, index) in galleryItems" 
                         :key="index"
                     >
                         <g-link 
@@ -23,6 +25,14 @@
                         {{item.node.title}}
                         </g-link>
                     </li>
+                </ul>
+            </li>
+            <li class="nav__item">
+                <g-link class="nav__link" to="/about">About</g-link> 
+            </li>
+            <li class="nav__item">
+                <g-link class="nav__link" to="/contact">Contact</g-link> 
+            </li>
         </ul>
     </nav>
 </template>
@@ -57,7 +67,7 @@ export default {
 </script>
 <static-query>
 query {
-    posts: allWordPressPost {
+    posts: allWordPressPost(sortBy: "title" order: ASC) {
     edges {
       node {
         path

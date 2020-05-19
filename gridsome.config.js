@@ -43,7 +43,6 @@ module.exports = {
     WordPressPost: [
       {
         path: (node) => {
-          console.log(node.categories)
             return `/gallery/${node.slug}`
         },
         component: './src/templates/WordPressPost.vue'

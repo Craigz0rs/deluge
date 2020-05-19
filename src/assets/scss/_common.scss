@@ -8,3 +8,13 @@
 .grid {
     display: grid;
 }
+
+.button {
+    cursor: pointer;
+    &--nav {
+        outline: none;
+        border: none;
+        background: transparent;
+
+    }
+}
